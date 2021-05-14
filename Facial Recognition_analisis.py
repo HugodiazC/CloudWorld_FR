@@ -4,6 +4,7 @@
                                     y como esto afecta nuestro entorno cercano"""
 
 import cv2
+import random
 
 
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt2.xml")
@@ -20,8 +21,11 @@ while(True):
         print(x, y, w, h)
         roi_gray = gray[y:y + h, x:x + w]  # (cord1-height, cord2-height)
         cv2.rectangle(frame, (x,y-20),(x+300,y),(0,0,0),thickness= cv2.FILLED)
+        
         font = cv2.FONT_HERSHEY_COMPLEX
-        name = "Eres seleccionado por A.I. DIARIO "
+        possible_actions = ["Eres seleccionado por A.I. DIARIO ", "A.I. controla lo que consumes ", "Tus gustos los decide una A.I."]
+        name = random.choice(possible_actions)
+        
         color = (255, 255, 255)
         stroke = 1
         cv2.putText(frame, name, (x, y-5), font, 0.5, color, stroke, cv2.LINE_AA)
